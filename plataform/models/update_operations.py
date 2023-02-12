@@ -42,7 +42,7 @@ def update_operations(obtect_check_operation):
             if operation_query == "-":
                 comando_update = f'''
                 UPDATE {config_db.TABLE_OPERATIONS}
-                SET alert_time_update = "{alert_time_update}", alert_type = "{alert_type}", category_alert = "{category_alert}", result = "N/C-{status_close}"
+                SET alert_time_update = "{alert_time_update}", category_alert = "{category_alert}", result = "N/C-{status_close}"
                 WHERE id_active = {id_active} and name_strategy = "{name_strategy}" and expiration = "{expiration}" and id >= 0
                 '''
                 cursor.execute(comando_update)
@@ -53,7 +53,7 @@ def update_operations(obtect_check_operation):
             elif operation_query != "-" and status_close == "empate":
                 comando_update = f'''
                 UPDATE {config_db.TABLE_OPERATIONS}
-                SET alert_time_update = "{alert_time_update}", alert_type = "{alert_type}", category_alert = "{category_alert}", result = "{status_close}"
+                SET alert_time_update = "{alert_time_update}", category_alert = "{category_alert}", result = "{status_close}"
                 WHERE id_active = {id_active} and name_strategy = "{name_strategy}" and expiration = "{expiration}" and id >= 0
                 '''
                 cursor.execute(comando_update)
@@ -64,7 +64,7 @@ def update_operations(obtect_check_operation):
             elif operation_query == status_close:
                 comando_update = f'''
                 UPDATE {config_db.TABLE_OPERATIONS}
-                SET alert_time_update = "{alert_time_update}", alert_type = "{alert_type}", category_alert = "{category_alert}", result = "win"
+                SET alert_time_update = "{alert_time_update}", category_alert = "{category_alert}", result = "win"
                 WHERE id_active = {id_active} and name_strategy = "{name_strategy}" and expiration = "{expiration}" and id >= 0
                 '''
                 cursor.execute(comando_update)
@@ -75,7 +75,7 @@ def update_operations(obtect_check_operation):
             elif operation_query != "-" and operation_query != status_close and status_close != "empate":
                 comando_update = f'''
                 UPDATE {config_db.TABLE_OPERATIONS}
-                SET alert_time_update = "{alert_time_update}", alert_type = "{alert_type}", category_alert = "{category_alert}", result = "loss"
+                SET alert_time_update = "{alert_time_update}", category_alert = "{category_alert}", result = "loss"
                 WHERE id_active = {id_active} and name_strategy = "{name_strategy}" and expiration = "{expiration}" and id >= 0
                 '''
                 cursor.execute(comando_update)
