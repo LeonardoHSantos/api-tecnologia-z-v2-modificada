@@ -24,19 +24,19 @@ class BaseStrategy:
                 minute = dt.minute
 
                 ####### CHAMADA PADRÃO 1 ########
-                if second == 5 and minute in constants.OBJECT_MINUTES_P1_AND_P2.keys():        # init
+                if second == 4 and minute in constants.OBJECT_MINUTES_P1_AND_P2.keys():        # init
                     BaseStrategy.strategy_M5_P1( second=second, minute=minute, category_alert="comum", result="process")
-                elif second == 26 and minute in constants.OBJECT_MINUTES_P1_AND_P2_30s.keys(): # atention
+                elif second == 24 and minute in constants.OBJECT_MINUTES_P1_AND_P2_30s.keys(): # atention
                     BaseStrategy.strategy_M5_P1( second=second, minute=minute, category_alert="attention", result="process")
-                elif second == 45 and minute in constants.OBJECT_MINUTES_P1_AND_P2_10s.keys(): # open operation
+                elif second == 47 and minute in constants.OBJECT_MINUTES_P1_AND_P2_10s.keys(): # open operation
                     BaseStrategy.strategy_M5_P1( second=second, minute=minute, category_alert="open-operation", result="open")
 
                 ######## CHAMADA PADRÃO 2 ########
-                elif second == 12 and minute in constants.OBJECT_MINUTES_P1_AND_P2.keys():     # init
+                elif second == 10 and minute in constants.OBJECT_MINUTES_P1_AND_P2.keys():     # init
                     BaseStrategy.strategy_M5_P2( second=second, minute=minute, category_alert="comum", result="process")
-                elif second == 33 and minute in constants.OBJECT_MINUTES_P1_AND_P2_30s.keys(): # attention
+                elif second == 32 and minute in constants.OBJECT_MINUTES_P1_AND_P2_30s.keys(): # attention
                     BaseStrategy.strategy_M5_P2( second=second, minute=minute, category_alert="attention", result="process")
-                elif second == 52 and minute in constants.OBJECT_MINUTES_P1_AND_P2_10s.keys(): # open operation
+                elif second == 53 and minute in constants.OBJECT_MINUTES_P1_AND_P2_10s.keys(): # open operation
                     BaseStrategy.strategy_M5_P2( second=second, minute=minute, category_alert="open-operation", result="open")
 
 
@@ -45,7 +45,7 @@ class BaseStrategy:
                     BaseStrategy.check_results_operations(padrao="PADRAO-M5-V1", category_alert="checking-operations", result="checking")
                 
                 ######## CHAMADA VERFICAÇÃO OPERAÇÕES PADRÃO 2 ########
-                elif second == 9 and minute in constants.OBJECT_CHECK_P1_AND_P2.keys():
+                elif second == 14 and minute in constants.OBJECT_CHECK_P1_AND_P2.keys():
                     BaseStrategy.check_results_operations(padrao="PADRAO-M5-V2", category_alert="checking-operations", result="checking")
 
         except Exception as e:

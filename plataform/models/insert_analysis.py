@@ -5,7 +5,6 @@ logging.basicConfig(
     encoding="utf-8",
     format="""----------------------------------------------\nLogRecord: %(asctime)s | Level: %(levelname)s | Message: %(message)s | Module: %(module)s | Pathname: %(pathname)s | Line: %(lineno)d | ProcessName: %(processName)s""")
 
-
 import config_db
 from plataform.db.conn import connetion_db
 

@@ -8,7 +8,9 @@ class PrepareDataAnalysis:
         object_analyzed = Process_data_candles(request_id=request_id).process_data_candles(message=message)
         if object_analyzed["process_action"] == "analysis" and object_analyzed["direction"] != "-":
             insert_analysis(object_analysis=object_analyzed)
+            
         elif object_analyzed["process_action"] == "checking_results_operations":
             update_operations(obtect_check_operation=object_analyzed)
+            
 
 
