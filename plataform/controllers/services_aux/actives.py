@@ -26,7 +26,7 @@ PARIDADES = {
 	# 'EURCAD': 105,
 	'CHFJPY': 106,
 	# 'CADCHF': 107,
-	'EURAUD': 108,
+	# 'EURAUD': 108,
 	# 'USDNOK': 168,
 	# 'EURNZD': 212,
 	'AUDCHF': 943,
