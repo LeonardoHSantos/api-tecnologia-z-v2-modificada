@@ -42,7 +42,10 @@ class Websocket_client:
                 try:
                     status_services.ID_USER_ACCOUNT_REAL = message["msg"]["balances"][0]["id"]
                     status_services.ID_USER_ACCOUNT_PRACTICE = message["msg"]["balances"][1]["id"]
+                    status_services.STATUS_TEMP_CONN = True
                     status_services.STATUS_MESSAGES_WSS = True
+                    status_services.TT_RECONNECT = 0
+                    
                     print(f"IDS | REAL: {status_services.ID_USER_ACCOUNT_REAL} | PRACTICE: {status_services.ID_USER_ACCOUNT_PRACTICE} | STATUS_MESSAGES_WSS: {status_services.STATUS_MESSAGES_WSS}")
                 except Exception as e:
                     msg_error_profile = f"Error/Message Profile: {e}"
