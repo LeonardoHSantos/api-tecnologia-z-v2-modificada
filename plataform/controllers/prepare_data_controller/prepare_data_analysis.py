@@ -1,5 +1,6 @@
 
-from plataform.controllers.process_data_controller.process_data_candles import Process_data_candles
+# from plataform.controllers.process_data_controller.process_data_candles import Process_data_candles
+from plataform.controllers.process_data_controller.process_data_candles_versioned import Process_data_candles
 from plataform.models.insert_analysis import insert_analysis
 from plataform.models.update_operations import update_operations
 

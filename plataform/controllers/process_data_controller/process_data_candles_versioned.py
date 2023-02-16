@@ -50,18 +50,39 @@ class Process_data_candles:
             active    = variables.DATAFRAME_ACTIVES_OPEN[ variables.DATAFRAME_ACTIVES_OPEN[strategy] == active_name]["ticker"].values[0]
             mercado   = variables.DATAFRAME_ACTIVES_OPEN[ variables.DATAFRAME_ACTIVES_OPEN[strategy] == active_name]["mercado"].values[0]
 
+            
+            # 16/02/2023 campos com "x" são essenciais para alerta no painel:
+            # - option_id                                 varchar(55)
+            # - open_time                                 varchar(25)
+            # - expiration_time                           varchar(25)
+            # - mercado                                   varchar(15)
+            # - name_estrategy                            varchar(55)
+            #--------------------------------------------------------------------------
+            # x id                                        bigint(20) AI PK
+            # x direction                                 varchar(4)
+            # x active                                    varchar(20)
+            # x resultado                                 varchar(25)
+            # x padrao                                    varchar(25)
+            # x alert_datetime                            varchar(25)
+            # x expiration_alert                          varchar(25)
+            # x expiration_alert_timestamp                varchar(55)
+            # x status_alert                              varchar(55)
+            
+            
             object_analyzed = {
-                "alert_datetime": datetime_now(tzone="America/Sao Paulo").strftime('%Y-%m-%d %H:%M:%S'),
-                "id_active": id_active,
-                "active": active,
-                "mercado": mercado,
+                # "direction": "call",
                 "direction": direction,
+                "active": active,
+                "resultado": result,
                 "padrao": strategy,
+                "alert_datetime": datetime_now(tzone="America/Sao Paulo").strftime('%Y-%m-%d %H:%M:%S'),
+                "expiration_alert": expiration_operation_M5()["expiration"].strftime('%Y-%m-%d %H:%M:%S'), # expiration | expiration_timestamp,
+                "expiration_alert_timestamp": expiration_operation_M5()["expiration_timestamp"], # expiration | expiration_timestamp,
+                "status_alert": alert_type,
+
+                "alert_time_update": datetime_now(tzone="America/Sao Paulo").strftime('%Y-%m-%d %H:%M:%S'),
                 "name_strategy": active_name,
-                "expiration": expiration_operation_M5()["expiration"].strftime('%Y-%m-%d %H:%M:%S'), # expiration | expiration_timestamp,
-                "alert_type": alert_type,
-                "category_alert": category_alert,
-                "result": result,
+                "mercado": mercado,
                 "process_action": "analysis",
             }
             print(f"----------->>> {strategy}/{active_name}/{active} | Mensagem pronta para envio: {object_analyzed}")
@@ -77,17 +98,18 @@ class Process_data_candles:
             id_active = variables.DATAFRAME_ACTIVES_OPEN[ variables.DATAFRAME_ACTIVES_OPEN[strategy] == active_name]["id"].values[0]
             active    = variables.DATAFRAME_ACTIVES_OPEN[ variables.DATAFRAME_ACTIVES_OPEN[strategy] == active_name]["ticker"].values[0]
             
+            
             object_check_operation = {
-                "alert_time_update": datetime_now(tzone="America/Sao Paulo").strftime('%Y-%m-%d %H:%M:%S'),
-                "id_active": id_active,
                 "active": active,
-                "status_close": status_close,
                 "padrao": strategy,
+                "resultado": result,
+                "status_close": status_close,
                 "name_strategy": active_name,
-                "expiration": check_expiration_operation_M5()["expiration"].strftime('%Y-%m-%d %H:%M:%S'), # expiration | expiration_timestamp,
-                "category_alert": category_alert,
-                "result": result,
-                "process_action": "checking_results_operations"
+                "expiration_alert": check_expiration_operation_M5()["expiration"].strftime('%Y-%m-%d %H:%M:%S'), # expiration | expiration_timestamp,
+                "alert_time_update": datetime_now(tzone="America/Sao Paulo").strftime('%Y-%m-%d %H:%M:%S'),
+                "process_action": "checking_results_operations",
+                # "id_active": id_active,
+                # "category_alert": category_alert,
             }
             print(f"----------->>> {strategy}/{active_name}/{active} | Mensagem pronta para envio: {object_check_operation}")
             return object_check_operation

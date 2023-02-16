@@ -41,7 +41,7 @@ class BaseStrategy:
                     BaseStrategy.strategy_M5_P2( second=second, minute=minute, category_alert="attention", result="process")
                 elif second == 53 and minute in constants.OBJECT_MINUTES_P1_AND_P2_10s.keys(): # open operation
                     BaseStrategy.strategy_M5_P2( second=second, minute=minute, category_alert="open-operation", result="open")
-
+                
 
                 ######## CHAMADA VERFICAÇÃO OPERAÇÕES PADRÃO 1 ########
                 elif second == 4 and minute in constants.OBJECT_CHECK_P1_AND_P2.keys():
