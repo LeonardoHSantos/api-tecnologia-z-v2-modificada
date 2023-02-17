@@ -28,7 +28,7 @@ def insert_analysis(object_analysis):
         name_strategy = object_analysis["name_strategy"]
         mercado = object_analysis["mercado"]
         alert_time_update = object_analysis["alert_time_update"]
-        # alert_time_update
+        open_time = object_analysis["open_time"]
 
 
         comando_query = f'''
@@ -59,13 +59,13 @@ def insert_analysis(object_analysis):
             if status_alert == "alert-open-operation":
                 comando_update = f'''
                 UPDATE {config_db.TABLE_OPERATIONS}
-                SET direction = "{direction}", status_alert = "{status_alert}", resultado = "{resultado}", alert_time_update = "{alert_time_update}"
+                SET open_time = "{open_time}", direction = "{direction}", status_alert = "{status_alert}", resultado = "{resultado}", alert_time_update = "{alert_time_update}"
                 WHERE name_strategy = "{name_strategy}" and expiration_alert = "{expiration_alert}" and id >= 0
                 '''
             else:
                 comando_update = f'''
                 UPDATE {config_db.TABLE_OPERATIONS}
-                SET open_time = "{alert_time_update}", direction = "{direction}", status_alert = "{status_alert}", resultado = "{resultado}", alert_time_update = "{alert_time_update}"
+                SET direction = "{direction}", status_alert = "{status_alert}", resultado = "{resultado}", alert_time_update = "{alert_time_update}"
                 WHERE name_strategy = "{name_strategy}" and expiration_alert = "{expiration_alert}" and id >= 0
                 '''
             cursor.execute(comando_update)

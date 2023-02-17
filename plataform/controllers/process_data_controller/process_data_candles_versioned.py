@@ -71,6 +71,7 @@ class Process_data_candles:
             
             object_analyzed = {
                 # "direction": "call",
+                "open_time": int(datetime_now(tzone="America/Sao Paulo").timestamp()),
                 "direction": direction,
                 "active": active,
                 "resultado": result,
