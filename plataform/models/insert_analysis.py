@@ -55,11 +55,19 @@ def insert_analysis(object_analysis):
             conn.commit()
             print(" ****** Registro inserido com sucesso. Database desconectado. ****** ")
         else:
-            comando_update = f'''
-            UPDATE {config_db.TABLE_OPERATIONS}
-            SET direction = "{direction}", status_alert = "{status_alert}", resultado = "{resultado}", alert_time_update = "{alert_time_update}"
-            WHERE name_strategy = "{name_strategy}" and expiration_alert = "{expiration_alert}" and id >= 0
-            '''
+            comando_update = ""
+            if status_alert == "alert-open-operation":
+                comando_update = f'''
+                UPDATE {config_db.TABLE_OPERATIONS}
+                SET direction = "{direction}", status_alert = "{status_alert}", resultado = "{resultado}", alert_time_update = "{alert_time_update}"
+                WHERE name_strategy = "{name_strategy}" and expiration_alert = "{expiration_alert}" and id >= 0
+                '''
+            else:
+                comando_update = f'''
+                UPDATE {config_db.TABLE_OPERATIONS}
+                SET open_time = "{alert_time_update}", direction = "{direction}", status_alert = "{status_alert}", resultado = "{resultado}", alert_time_update = "{alert_time_update}"
+                WHERE name_strategy = "{name_strategy}" and expiration_alert = "{expiration_alert}" and id >= 0
+                '''
             cursor.execute(comando_update)
             conn.commit()
             print(comando_update)
